@@ -1,39 +1,16 @@
-import './App.css';
-import { useState } from 'react';
 import { useEffect } from 'react';
+import { Form } from './components/Form';
+import { ListWords } from './components/ListWords';
+import { ContextProvider } from './context/ContextApi';
 
 function App() {
-  useEffect(() => {
-    
-  }, [])
+  useEffect(() => {}, []);
 
-  const [form, setForm] = useState('');
-  const handleChange = (e) => {
-    setForm(e.target.value)  
-  }
-
-
-  const sendForm = async (e) => {
-    e.preventDefault();
-    console.log(form)
-    await fetch('http://localhost:8080', {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify({form})
-    })
-  };
   return (
-    <form onSubmit={sendForm}>
-      <button type='submit'>Send</button>
-      <input
-        type="text"
-        name='input'
-        onChange={handleChange}
-        value={form.value}
-      />
-    </form>
+    <ContextProvider>
+        <Form />
+        <ListWords />
+    </ContextProvider>
   );
 }
 

@@ -17,6 +17,9 @@ function App() {
     e.preventDefault();
     console.log(form)
     await fetch('http://localhost:8080', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
       method: 'POST',
       body: JSON.stringify({form})
     })
